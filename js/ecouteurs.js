@@ -1,25 +1,27 @@
 function creerLesEcouteurs() {
+  console.log('Method: creerLesEcouteurs');
   // Touches, sur window
   window.addEventListener('keydown', toucheEnfoncee);
   // window.addEventListener('keyup', toucheRelachee);
-  
+
   // Ecouteurs de souris, on peut mettre sur le canvas
- 
+
 }
 
 function creerLesEcouteursCanvas() {
+  console.log('Method: creerLesEcouteursCanvas');
   /*game.canvas.addEventListener('mouseup', boutonSourisRelache); 
  game.canvas.addEventListener('mousedown', boutonSourisEnfonce); //*/
- game.getCanvas().addEventListener('mousemove', sourisDeplacee); 
+  game.getCanvas().addEventListener('mousemove', sourisDeplacee);
 }
 
 
-function retirerLesEcouteurs(){
-  
+function retirerLesEcouteurs() {
+
   // Ecouteurs de souris, on peut mettre sur le canvas
- /*game.canvas.removeEventListener('mouseup', boutonSourisRelache); 
- game.canvas.removeEventListener('mousedown', boutonSourisEnfonce); //*/
- game.getCanvas().removeEventListener('mousemove', sourisDeplacee);
+  /*game.canvas.removeEventListener('mouseup', boutonSourisRelache); 
+  game.canvas.removeEventListener('mousedown', boutonSourisEnfonce); //*/
+  game.getCanvas().removeEventListener('mousemove', sourisDeplacee);
 }
 /*
 function boutonSourisEnfonce(evt) {
@@ -37,14 +39,14 @@ function sourisDeplacee(evt) {
   let rect = game.getCanvas().getBoundingClientRect();
   let mx = evt.clientX - rect.left;
   let my = evt.clientY - rect.top;
-  
+
   //console.log("mouse move x = " + mx + " y = " + my);
   game.setPadPosition(mx);
-  
+
 }
 function toucheEnfoncee(evt) {
-    //console.log("touche enfoncee key = " + evt.key);
-  switch(evt.key) {
+  console.log("touche enfoncee key = " + evt.key);
+  switch (evt.key) {
     /*case 'ArrowRight' :
       //console.log("fleche à droite");
       monstre.v = 1;  // CA VA LE FAIRE ALLER A DROITE
@@ -56,15 +58,24 @@ function toucheEnfoncee(evt) {
       //console.log("fleche à gauche");
       monstre.v = -1;
       break;//*/
-    case ' ' :
-    //console.log(game.status);
-    console.log(game);
-      if(game.getStatus()=="standby"){
+    case ' ':
+      //console.log(game.status);
+      console.log(game);
+      if (game.getStatus() == "standby") {
         creerLesEcouteursCanvas();
         game.setStatus("inGame");
       }
-      else if(game.getStatus()=="dead"){
-        
+      else if(game.getStatus() == "inGame")
+        game.callThunder();
+      break;
+    case 'R':
+      if (game.getStatus() == "dead") {
+        game.initLevel();
+        game.setStatus("standby");
+      }
+      break;
+    case 'r':
+      if (game.getStatus() == "dead") {
         game.initLevel();
         game.setStatus("standby");
       }
@@ -73,6 +84,6 @@ function toucheEnfoncee(evt) {
 }
 
 function toucheRelachee(evt) {
-    //console.log("touche relachee");
+  //console.log("touche relachee");
   monstre.vx = 0;
 }

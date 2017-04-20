@@ -1,11 +1,11 @@
-// vars for counting frames/s, used by the measureFPS function
+  // vars for counting frames/s, used by the measureFPS function
 let frameCount = 0;
 let lastTime;
 let fps;
-
+// Pour afficher les ftps, un div
 let fpsContainer;
 
-function initFPS() {
+function initFPS(){
   // Pour le nombre d'images / s
   fpsContainer = document.createElement('div');
   document.body.appendChild(fpsContainer);

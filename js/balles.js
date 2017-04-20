@@ -33,4 +33,5 @@ class Balle extends ObjetGraphique {
     }
     return true;
   }
+
 }

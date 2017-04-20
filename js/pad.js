@@ -8,7 +8,14 @@ class Pad extends ObjetGraphique {
     move() {
         this.x += this.vx;
     }
-    draw(ctx) {
+    draw(ctx,width) {
+
+        ctx.save();
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, this.y, this.x, this.height);
+        ctx.fillRect(this.x+this.width, this.y, width-this.x-this.width, this.height);
+        ctx.restore();
+        /*
         // Pour dessiner un cercle, faire comme ceci
         // j'explique après...
         ctx.save(); // bonne pratique
@@ -17,7 +24,7 @@ class Pad extends ObjetGraphique {
         // On dessine en 0,0
         ctx.fillStyle = this.couleur;
         ctx.fillRect(0, 0, this.width, this.height);
-
+        */
         ctx.restore();
 
     }
