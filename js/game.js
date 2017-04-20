@@ -20,6 +20,7 @@ function Game() {
     let status = "standby";
     let score = 0;
     let pad;
+    
 
 
 
@@ -91,6 +92,10 @@ function Game() {
         if (score > 0) {
             message = "Score : " + score;
             displayMessage(ctx, message);
+        }
+
+        if(score%10==0 && score!=0){
+            level++;
         }
         testerCollisionJoueurAvecBalles();
 
